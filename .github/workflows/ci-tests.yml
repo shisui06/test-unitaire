@@ -9,9 +9,27 @@ on:
       - main
 
 jobs:
-  cucumber-tests:
-    runs-on: ubuntu-latest
-    
+  cucumber-tests-macos:
+    runs-on: macos-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '16'
+
+      - name: Install dependencies
+        run: |
+          npm install
+
+      - name: Run Cucumber.js tests
+        run: |
+          npm test
+
+  cucumber-tests-windows:
+    runs-on: windows-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
